@@ -109,9 +109,3 @@ The NaN macro F1 scores arise because one class receives zero predictions, makin
 
 Random Forest avoids this issue and demonstrates more stable performance on this dataset.
 
----
-
-## References
-
-* Dietterich, T. (1998). Approximate Statistical Tests for Comparing Classification Algorithms
-* Weka Documentation: https://www.cs.waikato.ac.nz/ml/weka/
