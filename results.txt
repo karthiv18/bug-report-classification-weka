@@ -1,0 +1,86 @@
+=== Bug Report Classifier — Caffe Dataset ===
+Dataset     : final.csv
+CV folds    : 10
+Max words   : 1000
+RF trees    : 100
+RF features : 32  (~sqrt(1000))
+
+Instances   : 40
+Classes     : 2 [bug=20, nonbug=20]
+Note: Dataset is imbalanced — macro F1 is the primary metric.
+
+=== 10-fold Cross-Validation Results ===
+
+--- Naive Bayes  (Baseline) ---
+  Macro F1        : NaN   <-- primary metric
+  Weighted F1     : NaN
+  Accuracy        : 50.0000%
+  Kappa           : 0.0000
+  AUC (weighted)  : 0.5000
+
+  Per-class results (important: check 'bug' recall):
+    [bug      ]  Precision=0.5000  Recall=1.0000  F1=0.6667
+    [nonbug   ]  Precision=NaN  Recall=0.0000  F1=NaN
+
+  Confusion Matrix:
+             bug         nonbug    
+  bug        20          0         
+  nonbug     20          0         
+
+============================================================
+
+--- Random Forest (Proposed) ---
+  Macro F1        : 0.4949   <-- primary metric
+  Weighted F1     : 0.4949
+  Accuracy        : 50.0000%
+  Kappa           : 0.0000
+  AUC (weighted)  : 0.5000
+
+  Per-class results (important: check 'bug' recall):
+    [bug      ]  Precision=0.5000  Recall=0.4000  F1=0.4444
+    [nonbug   ]  Precision=0.5000  Recall=0.6000  F1=0.5455
+
+  Confusion Matrix:
+             bug         nonbug    
+  bug        8           12        
+  nonbug     8           12        
+
+============================================================
+
+--- SVM / SMO    (Proposed) ---
+  Macro F1        : NaN   <-- primary metric
+  Weighted F1     : NaN
+  Accuracy        : 50.0000%
+  Kappa           : 0.0000
+  AUC (weighted)  : 0.5000
+
+  Per-class results (important: check 'bug' recall):
+    [bug      ]  Precision=0.5000  Recall=1.0000  F1=0.6667
+    [nonbug   ]  Precision=NaN  Recall=0.0000  F1=NaN
+
+  Confusion Matrix:
+             bug         nonbug    
+  bug        20          0         
+  nonbug     20          0         
+
+============================================================
+
+=== 5x2cv Paired t-Test (Dietterich, 1998) ===
+Dataset  : final.csv  (40 instances)
+Compared : Naive Bayes (baseline) vs Random Forest (proposed)
+Metric   : Macro F1  (primary; dataset is imbalanced ~1:8)
+df=5, critical value (alpha=0.05, two-tailed): 2.571
+
+Rep 1  |  A→B: NB=NaN RF=NaN diff=NaN  |  B→A: NB=NaN RF=NaN diff=NaN
+Rep 2  |  A→B: NB=NaN RF=NaN diff=NaN  |  B→A: NB=NaN RF=NaN diff=NaN
+Rep 3  |  A→B: NB=NaN RF=NaN diff=NaN  |  B→A: NB=NaN RF=NaN diff=NaN
+Rep 4  |  A→B: NB=NaN RF=NaN diff=NaN  |  B→A: NB=NaN RF=NaN diff=NaN
+Rep 5  |  A→B: NB=NaN RF=NaN diff=NaN  |  B→A: NB=NaN RF=NaN diff=NaN
+
+t-statistic          : NaN
+Critical value (df=5): 2.571
+
+Result: NO significant difference at p < 0.05
+=> Cannot conclude one classifier is superior.
+
+Mean difference (NB - RF): NaN  (Naive Bayes tends to score higher)

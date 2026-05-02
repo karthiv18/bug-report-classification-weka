@@ -1,0 +1,41 @@
+text,label
+"app crashes on startup",bug
+"null pointer exception occurs",bug
+"segmentation fault in module",bug
+"error loading configuration file",bug
+"unexpected crash when clicking button",bug
+"memory leak detected in process",bug
+"failure when parsing input data",bug
+"exception thrown during runtime",bug
+"incorrect output for edge case",bug
+"application freezes randomly",bug
+"update documentation file",nonbug
+"improve code readability",nonbug
+"refactor function structure",nonbug
+"add comments to source code",nonbug
+"optimize performance of method",nonbug
+"clean unused imports",nonbug
+"rename variables for clarity",nonbug
+"update readme instructions",nonbug
+"format code properly",nonbug
+"improve logging messages",nonbug
+"fix crash when opening file",bug
+"error in authentication module",bug
+"system fails to load resources",bug
+"unexpected shutdown occurs",bug
+"bug in data processing pipeline",bug
+"failure in network connection",bug
+"incorrect handling of null values",bug
+"runtime exception in thread",bug
+"error saving user data",bug
+"crash during file upload",bug
+"improve UI design",nonbug
+"update dependencies",nonbug
+"remove deprecated methods",nonbug
+"refactor class structure",nonbug
+"improve performance optimization",nonbug
+"enhance user documentation",nonbug
+"update version number",nonbug
+"clean code formatting",nonbug
+"improve test coverage",nonbug
+"refactor naming conventions",nonbug
