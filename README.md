@@ -1,41 +1,40 @@
-# Bug Report Classification using Machine Learning
+# Bug Report Classification using Weka
 
 ## Overview
-This project presents an intelligent software engineering tool for automatically classifying bug reports based on their textual descriptions. Efficient bug classification helps developers prioritise issues and improve software maintenance.
-
-The system compares a baseline approach with more advanced machine learning techniques to improve classification performance.
-
-## Models Compared
-- Naive Bayes (Baseline)
-- Random Forest (Proposed)
-- Support Vector Machine (SVM)
-
-TF-IDF is used to convert textual bug reports into numerical feature vectors.
-
-## Motivation
-Naive Bayes assumes independence between words, which is often unrealistic in bug reports. More advanced models such as Random Forest and SVM are expected to perform better by capturing complex relationships in the data.
-
-## Features
-- Proper machine learning pipeline using Weka
-- TF-IDF feature extraction
-- 10-fold cross-validation
-- Multiple evaluation metrics:
-  - Accuracy
-  - Precision
-  - Recall
-  - F1-score (Weighted and Macro)
-- Confusion matrix analysis
-- Statistical significance testing using 5x2 cross-validation paired t-test
+This project implements a bug report classifier using machine learning techniques. The task is to classify issue reports as either **bug** or **non-bug** using textual features.
 
 ## Dataset
-The dataset contains bug report descriptions and labels:
+- Source: Caffe GitHub repository
+- Size: 40 instances (20 bug, 20 non-bug)
+- Preprocessed to remove formatting inconsistencies
 
-- Column 1: Text (bug report description)
-- Column 2: Label (bug / non-bug)
+## Methodology
+- Feature extraction: TF-IDF (top 1000 words)
+- Classifiers:
+  - Naive Bayes (baseline)
+  - Random Forest (proposed)
+  - SVM (SMO)
+
+- Evaluation:
+  - 10-fold stratified cross-validation
+  - Primary metric: Macro F1
+  - Statistical test: 5×2cv paired t-test
+
+## Results
+
+| Classifier      | Macro F1 | Accuracy |
+|----------------|---------|----------|
+| Naive Bayes    | NaN     | 50%      |
+| Random Forest  | 0.4949  | 50%      |
+| SVM            | NaN     | 50%      |
+
+## Key Findings
+- Random Forest produced the most reliable performance
+- Naive Bayes and SVM showed degenerate behaviour
+- Macro F1 is essential when evaluating such models
 
 ## How to Run
 
-### Compile
 ```bash
-javac -cp ".:weka.jar" src/BugReportClassifier.java
-javac -cp ".:weka.jar" src/StatisticalTest.java
+java --add-opens java.base/java.lang=ALL-UNNAMED -cp ".:weka.jar:." BugReportClassifier final.csv
+java --add-opens java.base/java.lang=ALL-UNNAMED -cp ".:weka.jar:." StatisticalTest final.csv
